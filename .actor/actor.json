@@ -1,0 +1,8 @@
+{
+  "actorSpecification": 1,
+  "name": "stream-cell-crawler-cheerio",
+  "version": "1.0",
+  "buildTag": "latest",
+  "environmentVariables": {},
+  "dockerfile": "./Dockerfile"
+}

@@ -1,0 +1,27 @@
+{
+    "name": "stream-cell-crawler-cheerio",
+    "version": "0.0.1",
+    "type": "module",
+    "description": "Find <stream-cell> tags across a website.",
+    "dependencies": {
+        "apify": "^3.1.4",
+        "crawlee": "^3.0.0",
+        "htmlparser2": "^9.0.0"
+    },
+    "devDependencies": {
+        "@apify/tsconfig": "^0.1.0",
+        "@types/node": "^18.0.0",
+        "ts-node": "^10.8.0",
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "start": "npm run start:dev",
+        "start:prod": "node dist/main.js",
+        "start:dev": "ts-node-esm -T src/main.ts",
+        "build": "tsc",
+        "test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1",
+        "nwp": "ts-node-esm -T src/nwp.ts"
+    },
+    "author": "It's not you it's me",
+    "license": "ISC"
+}
