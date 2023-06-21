@@ -42,22 +42,16 @@ await Actor.main(async () => {
             await enqueueLinks({
                 strategy: 'same-domain',
                 transformRequestFunction(req) {
-                    // ignore all links ending with `.pdf`
-                    if (req.url.endsWith('.pdf')) return false
+                    if (req.url.endsWith('.pdf')) return false // ignore all links ending with `.pdf`
                     return req
                 },
             })
         }
     })
 
-    // Enqueue the initial request and run the crawler
-    // const input = await Actor.getInput();
-    // console.log(input.startUrl);
-
-    const startUrls = [
-        'https://nwpreferredfcu.com/sitemap/',
-        // 'https://nwpreferredfcu.com/personal-banking/accounts-2/checking/free-checking/'
-    ]
+    // Get actor inputs (from Apify console)
+    const input: any = await Actor.getInput()
+    const { startUrls } = input
 
     await crawler.run(startUrls)
 });
