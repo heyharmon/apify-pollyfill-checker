@@ -1,50 +1,15 @@
 {
-	"title": "Stream Cell Crawler - Input",
-	"type": "object",
-	"description": "This scraper loads <b>Start URLs</b> using raw HTTP requests, parses the HTML using the <a href='https://cheerio.js.org' target='_blank' rel='noopener noreferrer'>Cheerio</a> library and then executes <b>Page function</b> for each page to extract data from it. To follow links and scrape additional pages, set <b>Link selector</b> with <b>Pseudo-URLs</b> to specify which links to follow. Alternatively, you can manually enqueue new links in the <b>Page function</b>. For details, see the actor's <a href='https://apify.com/apify/cheerio-scraper' target='_blank' rel='noopener'>README</a> or the <a href='https://apify.com/docs/scraping/tutorial/introduction' target='_blank' rel='noopener'>Web scraping tutorial</a> in the Apify documentation.",
-	"schemaVersion": 1,
-	"properties": {
-		"startUrls": {
-			"sectionCaption": "Basic configuration",
-			"title": "Start URLs",
-			"type": "array",
-			"description": "URLs to start with",
-			"prefill": [{ "url": "https://example.com" }],
-			"editor": "requestListSources"
-		},
-		"linkSelector": {
-			"title": "Link selector",
-			"type": "string",
-			"description": "A CSS selector stating which links on the page (<code>&lt;a&gt;</code> elements with <code>href</code> attribute) shall be followed and added to the request queue. To filter the links added to the queue, use the <b>Pseudo-URLs</b> field.<br><br>If the <b>Link selector</b> is empty, the page links are ignored.<br><br>For details, see the <a href='https://apify.com/apify/cheerio-scraper#link-selector' target='_blank' rel='noopener'>Link selector</a> in README.",
-			"editor": "textfield",
-			"prefill": "a[href]"
-		},
-		"proxyConfiguration": {
-			"sectionCaption": "Proxy and HTTP configuration",
-			"title": "Proxy configuration",
-			"type": "object",
-			"description": "Specifies proxy servers that will be used by the scraper in order to hide its origin.<br><br>For details, see <a href='https://apify.com/apify/cheerio-scraper#proxy-configuration' target='_blank' rel='noopener'>Proxy configuration</a> in README.",
-			"prefill": { "useApifyProxy": true },
-			"default": { "useApifyProxy": false },
-			"editor": "proxy"
-		},
-		"proxyRotation": {
-			"title": "Proxy rotation",
-			"type": "string",
-			"description": "This property indicates the strategy of proxy rotation and can only be used in conjunction with Apify Proxy. The recommended setting automatically picks the best proxies from your available pool and rotates them evenly, discarding proxies that become blocked or unresponsive. If this strategy does not work for you for any reason, you may configure the scraper to either use a new proxy for each request, or to use one proxy as long as possible, until the proxy fails. IMPORTANT: This setting will only use your available Apify Proxy pool, so if you don't have enough proxies for a given task, no rotation setting will produce satisfactory results.",
-			"default": "RECOMMENDED",
-			"editor": "select",
-			"enum": [
-				"RECOMMENDED",
-				"PER_REQUEST",
-				"UNTIL_FAILURE"
-			],
-			"enumTitles": [
-				"Use recommended settings",
-				"Rotate proxy after each request",
-				"Use one proxy until failure"
-			]
-		}
-	},
-	"required": [ "startUrls" ]
+    "title": "Input schema for pollyfill checker",
+    "description": "Enter the start URL(s) of the website(s) to crawl, configure other optional settings, and run the Actor to crawl the pages and extract their text content.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "One or more URLs of the pages where the crawler will start. Note that the Actor will additionally only crawl sub-pages of these URLs. For example, for the start URL `https://www.example.com/blog`, it will crawl pages like `https://example.com/blog/article-1`, but will skip `https://example.com/docs/something-else`.",
+            "editor": "requestListSources",
+            "prefill": [{ "url": "https://rivertown.bloomcudev.com/" }]
+        }
+    }
 }

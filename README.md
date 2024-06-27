@@ -1,5 +1,5 @@
-# Stream Cell Crawler - Cheerio
-Use this crawler to find RateStream stream cells (e.g., <stream-cell uid="Free Checking" col="rate">...</stream-cell>) across a website.
+# Pollyfill Checker
+Crawl the pages of a website, get wordcount and list of links on each page.
 
 ## Commands
 Run crawl

@@ -1,28 +1,7 @@
 # Specify the base Docker image. You can read more about
 # the available images at https://crawlee.dev/docs/guides/docker-images
 # You can also use any other image from Docker Hub.
-FROM apify/actor-node:16 AS builder
-
-# Copy just package.json and package-lock.json
-# to speed up the build using Docker layer cache.
-COPY package*.json ./
-
-# Install all dependencies. Don't audit to speed up the installation.
-RUN npm install --include=dev --audit=false
-
-# Next, copy the source files using the user set
-# in the base image.
-COPY . ./
-
-# Install all dependencies and build the project.
-# Don't audit to speed up the installation.
-RUN npm run build
-
-# Create final image
-FROM apify/actor-node:16
-
-# Copy only built JS files from builder image
-COPY --from=builder /usr/src/app/dist ./dist
+FROM apify/actor-node:18
 
 # Copy just package.json and package-lock.json
 # to speed up the build using Docker layer cache.
@@ -47,4 +26,4 @@ COPY . ./
 
 
 # Run the image.
-CMD npm run start:prod --silent
+CMD npm start --silent
